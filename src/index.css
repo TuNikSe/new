@@ -1,0 +1,233 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ef 25%, #f0f9ff 50%, #e0f2fe 75%, #f0f4f8 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+}
+
+/* Liquid Glass aesthetic */
+.glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card-hover:hover {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.glass-header {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--color-primary-400);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  outline: none;
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Status badge styles */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; max-height: 0; }
+  to { opacity: 1; max-height: 500px; }
+}
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out;
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+
+/* Print styles */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+  body {
+    background: white !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-container {
+    display: block !important;
+  }
+  .glass-card, .glass-header {
+    background: white !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+  .print-company-header {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1.5px solid #333;
+  }
+  .print-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5px;
+    line-height: 1.25;
+    table-layout: fixed;
+  }
+  .print-table th,
+  .print-table td {
+    border: 1px solid #999;
+    padding: 2px 4px;
+    text-align: left;
+    overflow: hidden;
+    word-wrap: break-word;
+  }
+  .print-table th {
+    background: #f0f0f0;
+    font-weight: 600;
+  }
+  .print-table th:nth-child(1), .print-table td:nth-child(1) { width: 11%; }
+  .print-table th:nth-child(2), .print-table td:nth-child(2) { width: 12%; }
+  .print-table th:nth-child(3), .print-table td:nth-child(3) { width: 12%; }
+  .print-table th:nth-child(4), .print-table td:nth-child(4) { width: 11%; }
+  .print-table th:nth-child(5), .print-table td:nth-child(5) { width: 22%; }
+  .print-table th:nth-child(6), .print-table td:nth-child(6) { width: 16%; }
+  .print-table th:nth-child(7), .print-table td:nth-child(7) { width: 16%; }
+  tr {
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+}
+
+.print-only {
+  display: none;
+}
